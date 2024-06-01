@@ -19,5 +19,7 @@ jobs:
 
       - name: Check for insecure actions
         run: |
-          grep -q "uses: dduzgun-security/secure-code-game-action@" $GITHUB_WORKSPACE/.github/workflows/jarvis-code.yml
-
+          if grep -q "uses: dduzgun-security/secure-code-game-action@" $GITHUB_WORKSPACE/.github/workflows/jarvis-code.yml; then
+            echo "Insecure action detected. Please remove it from your workflow."
+            exit 1
+          fi
